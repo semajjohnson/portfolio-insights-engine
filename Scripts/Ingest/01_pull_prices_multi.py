@@ -1,9 +1,13 @@
 import yfinance as yf
 import pandas as pd
 
+from pathlib import Path
+Path("Data/Raw").mkdir(parents=True, exist_ok=True)
+
+
 START = "2025-01-01"
 END   = "2025-01-31"
-tickers_df = pd.read_csv("/Users/mahji/Desktop/Investment Project/Investment_Tracker/Data/Raw/ticker.csv")
+tickers_df = pd.read_csv("Data/Raw/ticker.csv")
 tickers = tickers_df["ticker"].dropna().unique().tolist()
 
 dfs = []
@@ -34,7 +38,9 @@ prices = pd.concat(dfs, ignore_index=True)
 prices = prices.sort_values(["ticker", "date"])
 
 filename = f"prices_{START}_to_{END}.csv"
-output_path = f"data/processed/{filename}"
+output_path = f"Data/Processed/{filename}"
+
+Path(output_path).parent.mkdir(parents=True, exist_ok=True)
 
 prices.to_csv(output_path, index=False)
 

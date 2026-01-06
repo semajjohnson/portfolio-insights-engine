@@ -1,6 +1,12 @@
 import sqlite3
 import pandas as pd
 
+from pathlib import Path
+
+# --- Ensure required directories exist ---
+Path("db").mkdir(exist_ok=True)
+Path("Data/Processed").mkdir(parents=True, exist_ok=True)
+
 DB_PATH = "db/portfolio.db"
 
 # Update this to your auto-named output path:

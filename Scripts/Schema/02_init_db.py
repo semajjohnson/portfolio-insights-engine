@@ -1,4 +1,9 @@
 import sqlite3
+from pathlib import Path
+
+# --- Ensure required directories exist ---
+Path("db").mkdir(exist_ok=True)
+Path("Data/Processed").mkdir(parents=True, exist_ok=True)
 
 # Path to the SQLite database file.
 # If it doesn't exist yet, SQLite will create it the first time we connect.
